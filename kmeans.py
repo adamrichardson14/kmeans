@@ -10,6 +10,33 @@ num_clusters = 4
 colors = ["ro", "go", "co", "mo", "yo", "ko", "wo"]
 
 
+def on_key(event):
+    if event.key == " ":
+        calculate_centroids()
+        calculate_colours()
+        plot_chart()
+    elif event.key == "r":
+        create_random_values()
+        create_random_clusters()
+        plot_chart()
+
+
+def create_random_clusters():
+    clusters.clear()
+    for _ in range(num_clusters):
+        x = random.randint(0, 100)
+        y = random.randint(0, 100)
+        clusters.append([x, y])
+
+
+def create_random_values():
+    values.clear()
+    for _ in range(50):
+        x = random.randint(0, 100)
+        y = random.randint(0, 100)
+        values.append([x, y, "bo"])
+
+
 def plot_chart():
     plt.clf()
     for i in range(len(values)):
@@ -49,33 +76,6 @@ def calculate_centroids():
         if count != 0:
             clusters[i][0] = x / count
             clusters[i][1] = y / count
-
-
-def on_key(event):
-    if event.key == " ":
-        calculate_centroids()
-        calculate_colours()
-        plot_chart()
-    elif event.key == "r":
-        create_random_values()
-        create_random_clusters()
-        plot_chart()
-
-
-def create_random_clusters():
-    clusters.clear()
-    for _ in range(num_clusters):
-        x = random.randint(0, 100)
-        y = random.randint(0, 100)
-        clusters.append([x, y])
-
-
-def create_random_values():
-    values.clear()
-    for _ in range(50):
-        x = random.randint(0, 100)
-        y = random.randint(0, 100)
-        values.append([x, y, "bo"])
 
 
 create_random_values()
